@@ -1,0 +1,465 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+    /* 背景色の変更を滑らかにする */
+    transition: background-color 0.3s ease;
+}
+
+/* 操作パネル本体 */
+.control-panel {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #f0f0f0;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* パネルが開いている状態 */
+.control-panel.open {
+    left: 0;
+}
+
+/* 矢印ボタンのスタイル */
+#toggle-panel-btn {
+    align-self: flex-end;
+    position: absolute;
+    bottom: 10px;
+    right: -70px;
+    width: 70px;
+    height: 70px;
+    border: 0px solid #e4fdff;
+    background-color: #b1b1b171;
+    cursor: pointer;
+    font-size: 1.2em;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* パネルが開いている時のボタンのスタイル */
+.control-panel.open #toggle-panel-btn {
+    transform: rotate(180deg);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+/* グリッド本体 */
+.grid-stack {
+    height: auto;
+    padding-bottom: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+/* パネルが開いている時にグリッドを右にずらす */
+.grid-stack.shifted {
+    margin-left: 250px;
+}
+
+.grid-stack-item-content {
+    background-color: #80ccff;
+    position: relative;
+    padding: 20px;
+    border-radius: 1vw;
+}
+
+/* 個別削除ボタンのスタイル */
+.remove-item-btn {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 10;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+summary {
+    cursor: pointer;
+}
+
+.none {
+    display: none;
+}
+
+/* 色パレット関連 */
+.color-palette p {
+    margin: 2px;
+}
+
+.color-button {
+    width: 30px;
+    height: 30px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.color-button.selected {
+    border-color: dodgerblue;
+}
+
+#color-picker {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+/* アイテムコンテンツに直接色を適用するためのクラス */
+.bg-red {
+    background-color: #ff6347;
+}
+
+.bg-blue {
+    background-color: #4682b4;
+}
+
+.bg-green {
+    background-color: #3cb371;
+}
+
+.bg-yellow {
+    background-color: #ffd700;
+}
+
+.bg-purple {
+    background-color: #9370db;
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    .control-panel {
+        background-color: #2d2d2d;
+        color: white;
+    }
+
+    .grid-stack-item-content {
+        color: white;
+    }
+}
+
+.bar {
+    Border-radius: 20px;
+    text-align: center;
+}
+
+.bar img {
+    Border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.bar img:hover {
+    width: 55px;
+    height: 55px;
+}
+
+.bar svg {
+    height: 3.5vw;
+    filter: invert(100%);
+    cursor: pointer;
+}
+
+.bar svg:hover {
+    transition: all 0.3s;
+    filter: invert(0%);
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.flex {
+    display: flex;
+}
+
+.panel {
+    margin-left: 0.7vw;
+}
+
+.kurai {
+    color: #b8b8b8;
+}
+
+.mihon {
+    font-size: 1.37vw;
+    font-weight: bold;
+}
+
+#onload {
+    font-size: 1vw;
+}
+
+.control-content {
+    overflow-y: scroll;
+    width: 250px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+.search {
+    text-align: center;
+    height: 5vw;
+    display: flex;
+}
+
+.search input {
+    width: 100%;
+    font-size: 1.5vw;
+    height: 95%;
+    border: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.search button {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: rgba(0, 0, 0, 0);
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.group {
+    text-align: center;
+}
+
+.ingroup {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.chgroup input {
+    width: 20vw;
+    height: 3vw;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+}
+
+.chgroup input:focus {
+    box-shadow: 0 0 5px 0 rgb(0, 255, 76);
+    border: 0px solid #FFF !important;
+    outline: 0;
+}
+
+.chgroup button {
+    background-color: rgba(116, 255, 123, 0.589);
+    border: none;
+    width: 3vw;
+    height: 3.1vw;
+    border-top-right-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.chgroup button:hover {
+    background-color: rgba(255, 243, 116, 0.589);
+    transition: all 0.2s;
+}
+
+.chgroup {
+    text-align: center;
+}
+
+.chat {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1vw;
+}
+
+/* 画像ウィジェット関連のスタイル */
+.image-widget {
+    text-align: center;
+    padding: 10px;
+}
+
+.image-upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.image-upload-area:hover {
+    border-color: #007bff;
+}
+
+.image-upload-area.dragover {
+    border-color: #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 90%;
+    border-radius: 10px;
+    margin: 10px 0;
+    object-fit: contain;
+}
+
+.image-upload-input {
+    display: none;
+}
+
+.upload-text {
+    color: #666;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.image-controls {
+    margin-top: 10px;
+}
+
+.image-controls button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.change-image-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.remove-image-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* 背景画像関連のスタイル */
+.background-image-controls {
+    margin-top: 10px;
+}
+
+.bg-image-upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    text-align: center;
+}
+
+.bg-image-upload-area:hover {
+    border-color: #007bff;
+}
+
+.bg-image-upload-area.dragover {
+    border-color: #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.bg-image-preview {
+    max-width: 100%;
+    max-height: 80px;
+    border-radius: 5px;
+    margin: 5px 0;
+    object-fit: cover;
+}
+
+.bg-image-controls {
+    margin: 10px 0;
+}
+
+.bg-image-controls button {
+    margin: 2px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+#change-bg-image {
+    background-color: #007bff;
+    color: white;
+}
+
+#remove-bg-image {
+    background-color: #dc3545;
+    color: white;
+}
+
+.bg-display-options {
+    margin-top: 10px;
+}
+
+.bg-display-options label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.bg-display-options select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.bgpanel h4 {
+    margin: 10px;
+}
+
+.control-panel button {
+    background-color: #80ccff;
+    color: #000000;
+    border: none;
+    height: 2vw;
+    border-radius: 0.3vw;
+}
+
+#toggle-mode-btn {
+    height: 3vw;
+    font-size: 1vw;
+    margin-bottom: 0.5vw;
+}
+
+.centerbtn {
+    text-align: center;
+}

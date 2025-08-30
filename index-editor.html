@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block-UI Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/gridstack@12.3.3/dist/gridstack.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/gridstack@12.3.3/dist/gridstack.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="control-panel">
+        <div class="control-content">
+            <div class="centerbtn">
+                <button id="toggle-mode-btn">編集モード</button>
+            </div>
+            <details open>
+                <summary>アイテム一覧</summary>
+                <div class="panel">
+                    <details>
+                        <summary>操作系パネル</summary>
+                        <div class="panel">
+                            <button id="add-item-btn3">操作バーを追加</button>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>機能パネル</summary>
+                        <div class="panel">
+                            <button id="add-item-btn4">検索バーを追加</button>
+                            <br>
+                            <button id="add-item-btn5">グループタブを追加</button>
+                            <br>
+                            <button id="add-item-btn6">フレンドタブを追加</button>
+                            <br>
+                            <button id="add-item-btn7">チャットウィンドウを追加</button>
+                            <br>
+                            <button id="add-item-btn8">画像ウィジェットを追加</button>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>デザインパネル</summary>
+                        <div class="panel">
+                            <button id="add-item-btn">空白ブロック1を追加</button>
+                            <br>
+                            <button id="add-item-btn2">空白ブロック2を追加</button>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <details open>
+                <summary>アイテムの色を変更</summary>
+                <div class="color-palette">
+                    <p>配色テーマ:Original</p>
+                    <button class="color-button" data-color="#ff6347" style="background-color: #ff6347;"></button>
+                    <button class="color-button" data-color="#4682b4" style="background-color: #4682b4;"></button>
+                    <button class="color-button" data-color="#80ccff" style="background-color: #80ccff;"></button>
+                    <button class="color-button" data-color="#3cb371" style="background-color: #3cb371;"></button>
+                    <button class="color-button" data-color="#ffd700" style="background-color: #ffd700;"></button>
+                    <button class="color-button" data-color="#9370db" style="background-color: #9370db;"></button>
+                    <p>配色テーマ:Frenzy</p>
+                    <button class="color-button" data-color="#3819b5" style="background-color: #3819b5;"></button>
+                    <button class="color-button" data-color="#291291" style="background-color: #291291;"></button>
+                    <button class="color-button" data-color="#180b70" style="background-color: #180b70;"></button>
+                    <button class="color-button" data-color="#090652" style="background-color: #090652;"></button>
+                    <button class="color-button" data-color="#000233" style="background-color: #000233;"></button>
+                    <p>配色テーマ:Cocoa</p>
+                    <button class="color-button" data-color="#8B4513" style="background-color: #8B4513;"></button>
+                    <button class="color-button" data-color="#A0522D" style="background-color: #A0522D;"></button>
+                    <button class="color-button" data-color="#C68642" style="background-color: #C68642;"></button>
+                    <button class="color-button" data-color="#E0B886" style="background-color: #E0B886;"></button>
+                    <button class="color-button" data-color="#D2691E" style="background-color: #D2691E;"></button>
+                    <p>配色テーマ:Coral Kiss</p>
+                    <button class="color-button" data-color="#85144b" style="background-color: #85144b;"></button>
+                    <button class="color-button" data-color="#FF4136" style="background-color: #FF4136;"></button>
+                    <button class="color-button" data-color="#FF851B" style="background-color: #FF851B;"></button>
+                    <button class="color-button" data-color="#fdd8d8" style="background-color: #fdd8d8;"></button>
+                    <button class="color-button" data-color="#490828" style="background-color: #490828;"></button>
+                    <p>配色テーマ:Cyber</p>
+                    <button class="color-button" data-color="#F72585" style="background-color: #F72585;"></button>
+                    <button class="color-button" data-color="#B5179E" style="background-color: #B5179E;"></button>
+                    <button class="color-button" data-color="#7209B7" style="background-color: #7209B7;"></button>
+                    <button class="color-button" data-color="#560BAD" style="background-color: #560BAD;"></button>
+                    <button class="color-button" data-color="#480CA8" style="background-color: #480CA8;"></button>
+                    <p>現在の色モード</p>
+                    <input type="color" id="color-picker" value="#80ccff">
+                    <p>↑色を指定できます</p>
+                </div>
+            </details>
+            <details open>
+                <summary>背景設定</summary>
+                <div class="bgpanel">
+                    <h4>背景色</h4>
+                    <input type="color" id="background-color-picker" value="#ffffff">
+                    <h4>背景画像</h4>
+                    <div class="background-image-controls">
+                        <div class="bg-image-upload-area" id="bg-image-upload">
+                            <div class="upload-text">クリックまたはドラッグ&ドロップで背景画像をアップロード</div>
+                            <input type="file" id="bg-image-input" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="bg-image-preview-container" style="display: none;">
+                            <img class="bg-image-preview" src="" alt="背景画像プレビュー">
+                            <div class="bg-image-controls">
+                                <button id="change-bg-image">画像を変更</button>
+                                <button id="remove-bg-image">画像を削除</button>
+                            </div>
+                            <div class="bg-display-options">
+                                <label>表示モード:</label>
+                                <select id="bg-display-mode">
+                                    <option value="cover">カバー (cover)</option>
+                                    <option value="contain">フィット (contain)</option>
+                                    <option value="repeat">繰り返し (repeat)</option>
+                                    <option value="no-repeat">繰り返しなし (no-repeat)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <div class="control-buttons">
+                <h3>ブラウザに保存</h3>
+                <button id="save-local-btn">保存</button>
+                <button id="load-local-btn">読み込む</button>
+            </div>
+            <div>
+                <h3>ファイルに保存</h3>
+                <button id="save-file-btn">保存</button>
+                <button id="load-file-btn">読み込む</button>
+            </div>
+            <div>
+                <h3>その他</h3>
+                <button id="clear-btn">レイアウトをクリア</button>
+                <br>
+                <br>
+                <button type="button" onclick="location.href='view.html?autoload=local'">トップに戻る</button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="copylight">
+                <c>Block-UI Demo</c>
+                <br>
+                <c class="kurai">©️2025 Spray!Base_Project</c>
+            </div>
+        </div>
+        <button id="toggle-panel-btn">◀</button>
+    </div>
+
+    <div class="grid-stack">
+        <div class="grid-stack-item">
+            <div class="grid-stack-item-content" id="onload-size">
+                <div class="mihon">サイズ<br>見本</div>
+                <button class="remove-item-btn">X</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/12.3.3/gridstack-all.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
