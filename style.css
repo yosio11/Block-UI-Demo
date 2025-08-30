@@ -463,3 +463,12 @@ summary {
 .centerbtn {
     text-align: center;
 }
+
+.button-web button {
+    height: 2.5vw;
+}
+
+button:hover {
+    background-color: #59ffa4;
+    transition: all 0.3s;
+}
